@@ -1,5 +1,6 @@
 - mkdir laravel-api-fgta
 - cd laravel-api-fgta
+- git clone REPO
 - composer install
 - cp .env.example .env
 - php artisan key:generate
