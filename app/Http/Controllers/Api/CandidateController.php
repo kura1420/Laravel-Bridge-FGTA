@@ -47,6 +47,7 @@ class CandidateController extends Controller
         $requestParam = [
             'data' => [
                 'gender_id' => $request->gender_id,
+                'hrcdt_hiredate' => date('d/m/Y', strtotime($request->hrcdt_hiredate)),
                 'hrcdt_address' => $request->hrcdt_address,
                 'hrcdt_addressdom' => $request->hrcdt_addressdom,
                 'hrcdt_birthdate' => date('d/m/Y', strtotime($request->hrcdt_birthdate)),
@@ -88,6 +89,7 @@ class CandidateController extends Controller
                 'hrcdt_id' => $request->hrcdt_id,
                 'hrcdtedu_city' => $request->hrcdtedu_city,
                 'hrcdtedu_gpa' => $request->hrcdtedu_gpa,
+                'hrcdtedu_gradyear' => $request->hrcdtedu_gradyear,
                 'hrcdtedu_id' => '',
                 'hrcdtedu_name' => $request->hrcdtedu_name,
                 'hrcdtedu_title' => $request->hrcdtedu_title,
@@ -115,7 +117,7 @@ class CandidateController extends Controller
             'data' => [
                 'gender_id' => $request->gender_id,
                 'hrcdt_id' => $request->hrcdt_id,
-                'hrcdtfam_birthdate' => $request->hrcdtfam_birthdate ? date('d/m/Y', strtotime($request->hrcdtfam_birthdate)) : date('d/m/Y'),
+                'hrcdtfam_birthdate' => date('d/m/Y', strtotime($request->hrcdtfam_birthdate)),
                 'hrcdtfam_birthplace' => $request->hrcdtfam_birthplace,
                 'hrcdtfam_handphone' => $request->hrcdtfam_handphone,
                 'hrcdtfam_id' => '',
@@ -260,11 +262,9 @@ class CandidateController extends Controller
         $requestParam = [
             'data' => [
                 'hrcdt_id' => $request->hrcdt_id,
-                'hrcdtattch_expired' => $request->hrcdtattch_expired ? date('d/m/Y', strtotime($request->hrcdtattch_expired)) : date('d/m/Y'),
                 'hrcdtattch_filename' => $hrcdtattch_filename->filename,
                 'hrcdtattch_id' => '',
                 'hrcdtattch_name' => $request->hrcdtattch_name,
-                'hrcdtattch_validity' => $request->hrcdtattch_validity ? date('d/m/Y', strtotime($request->hrcdtattch_validity)) : date('d/m/Y'),
                 '_state' => 'NEW'
             ],
             'options' => [
