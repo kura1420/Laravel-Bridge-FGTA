@@ -23,17 +23,19 @@ Route::prefix('v1')
     ->group(function () {
 
         Route::prefix('candidate')
-            ->as('candidate.')
+            ->as('api-candidate.')
             ->controller(CandidateController::class)
             ->group(function () {
                 Route::get('/', 'index')->name('index');
-                Route::get('/{id}', 'show')->name('show');
 
                 Route::post('/', 'store')->name('store');
-
-                Route::put('/{id}', 'update')->name('update');
-
-                Route::delete('/{id}', 'destroy')->name('destroy');
+                Route::post('/edu', 'storeEdu')->name('store-edu');
+                Route::post('/fam', 'storeFam')->name('store-fam');
+                Route::post('/train', 'storeTrain')->name('store-train');
+                Route::post('/job-exp', 'storeJobExp')->name('store->jobexp');
+                Route::post('/org', 'storeOrg')->name('store-org');
+                Route::post('/reff', 'storeReff')->name('store-reff');
+                Route::post('/attach', 'storeAttach')->name('store-attach');
             });
 
     });

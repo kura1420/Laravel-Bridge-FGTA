@@ -24,7 +24,10 @@ class BaseApi
 
         $header = self::$header;
 
-        $res = Http::withHeaders($header)
+        $res = Http::withOptions([
+            'debug' => FALSE,
+        ])
+            ->withHeaders($header)
             ->get($fgtaHost . "/get/fgta/framework/otp/getnonce/{$module}/getnonce");
 
         return $res;
@@ -41,7 +44,10 @@ class BaseApi
 
             self::$header['fgta-nonce'] = $obj->responseData->nonce;
 
-            $res = Http::withHeaders(self::$header)
+            $res = Http::withOptions([
+                'debug' => FALSE,
+            ])
+                ->withHeaders(self::$header)
                 ->post($fgtaHost . "/api/" . $module, [
                     'txid' => NULL,
                     'requestParam' => [
@@ -58,7 +64,7 @@ class BaseApi
 
             return $responseNonce;
         } else {
-            return $responseNonce;
+            return $responseNonce->serverError();
         }
     }
 
@@ -73,7 +79,10 @@ class BaseApi
 
             self::$header['fgta-nonce'] = $obj->responseData->nonce;
 
-            $res = Http::withHeaders(self::$header)
+            $res = Http::withOptions([
+                'debug' => FALSE,
+            ])
+                ->withHeaders(self::$header)
                 ->post($fgtaHost . "/api/{$module}", [
                     'txid' => NULL,
                     'requestParam' => $requestParam,
@@ -83,7 +92,7 @@ class BaseApi
 
             return $responseData;
         } else {
-            return $responseNonce;
+            return $responseNonce->serverError();
         }
     }
 
@@ -103,14 +112,17 @@ class BaseApi
                 'requestParam' => $requestParam,
             ];
 
-            $res = Http::withHeaders(self::$header)
+            $res = Http::withOptions([
+                'debug' => FALSE,
+            ])
+                ->withHeaders(self::$header)
                 ->post($fgtaHost . "/api/{$module}", $params);
 
             $responseData = $res->object();
 
             return $responseData;
         } else {
-            return $responseNonce;
+            return $responseNonce->serverError();
         }
     }
 
@@ -130,14 +142,17 @@ class BaseApi
                 'requestParam' => $requestParam,
             ];
 
-            $res = Http::withHeaders(self::$header)
+            $res = Http::withOptions([
+                'debug' => FALSE,
+            ])
+                ->withHeaders(self::$header)
                 ->post($fgtaHost . "/api/{$module}", $params);
 
             $responseData = $res->object();
 
             return $responseData;
         } else {
-            return $responseNonce;
+            return $responseNonce->serverError();
         }
     }
 
@@ -157,14 +172,17 @@ class BaseApi
                 'requestParam' => $requestParam,
             ];
 
-            $res = Http::withHeaders(self::$header)
+            $res = Http::withOptions([
+                'debug' => FALSE,
+            ])
+                ->withHeaders(self::$header)
                 ->post($fgtaHost . "/api/{$module}", $params);
 
             $responseData = $res->object();
 
             return $responseData;
         } else {
-            return $responseNonce;
+            return $responseNonce->serverError();
         }
     }
 
